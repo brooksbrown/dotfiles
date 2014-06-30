@@ -86,29 +86,26 @@ def get_system_dependencies():
   if dist[0] == 'Ubuntu':
     os.system('sudo apt-get install tmux exuberant-ctags -y')
 
-#remove old .vim directory and configs
-if os.path.isdir(home + '/.vim'):
-  print 'Removing ' + home + '/.vim'
-  shutil.rmtree(home + '/.vim')
+def remove_path(path):
+  if os.path.isdir(path):
+    print 'Removing ' + path
+    shutil.rmtree(path)
+  elif os.path.isfile(path):
+    print 'Removing ' + path 
+    os.remove(path)
 
-if os.path.isfile(home + '/.vimrc'):
-  print 'Removing ' + home + '/.vimrc'
-  os.remove(home + '/.vimrc')
+#remove old .vim directory and configs
+remove_path(home + '/.vim')
+remove_path(home + '/.vimrc')
 
 #remove old tmux.conf
-if os.path.isfile(home + '/.tmux.conf'):
-  print 'Removing ' + home + '/.tmux.conf'
-  os.remove(home + '/.tmux.conf')
+remove_path(home + '/.tmux.conf')
 
 #remove old gitconfig
-if os.path.isfile(home + '/.gitconfig'):
-  print 'Removing ' + home + '/.gitconfig'
-  os.remove(home + '/.gitconfig')
+remove_path(home + '/.gitconfig')
 
 #remove old gitconfig
-if os.path.isfile(home + '/.bashrc'):
-  print 'Removing ' + home + '/.bashrc'
-  os.remove(home + '/.bashrc')
+remove_path(home + '/.bashrc')
 
 #copying over vim config skeleton
 os.mkdir(home + '/.vim')
