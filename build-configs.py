@@ -54,13 +54,18 @@ vim_dependencies = {
     'source' : 'git@github.com:MattesGroeger/vim-bookmarks.git',
     'destination' : 'bundle/bookmarks'
   },
+  'indent-guides' : {
+    'source_type' : 'git',
+    'tag' : '1.6',
+    'source' : 'git@github.com:nathanaelkane/vim-indent-guides.git',
+    'destination' : 'bundle/indent-guides'
+  },
   'xoria256' : {
     'source_type' : 'file',
     'tag' : '1.5',
     'source' : 'http://www.vim.org/scripts/download_script.php?src_id=15762',
     'destination' : 'colors/xoria256.vim'
   },
-
 } 
 
 def get_vim_dependencies():
