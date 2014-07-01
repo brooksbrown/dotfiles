@@ -84,7 +84,7 @@ def get_vim_dependencies():
 def get_system_dependencies():
   dist = platform.dist()
   if dist[0] == 'Ubuntu':
-    os.system('sudo apt-get install tmux exuberant-ctags -y')
+    os.system('sudo apt-get install vim tmux exuberant-ctags -y')
 
 def remove_path(path):
   if os.path.isdir(path):
