@@ -31,9 +31,10 @@ set t_Co=256
 
 set laststatus=2
 
-colorscheme xoria256
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
-let indent_guides_auto_colors = 0
-hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=grey
-let indent_guides_guide_size = 1
+highlight clear SignColumn
+
+let g:airline_powerline_fonts = 1

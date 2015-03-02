@@ -13,8 +13,7 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 vim_dir = home + '/.vim'
 
 vim_dependencies = {
-  'pathogen' : {
-    'source_type' : 'file',
+  'pathogen' : { 'source_type' : 'file',
     'source' : 'https://tpo.pe/pathogen.vim',
     'destination' : 'autoload/pathogen.vim',
   },
@@ -24,9 +23,21 @@ vim_dependencies = {
     'source' : 'git@github.com:majutsushi/tagbar.git',
     'destination' : 'bundle/tagbar'
   },
+  'fugitive' : {
+    'source_type' : 'git',
+    'tag' : 'v2.2',
+    'source' : 'git@github.com:tpope/vim-fugitive.git',
+    'destination' : 'bundle/fugitive'
+  },
+  'gitgutter' : {
+    'source_type' : 'git',
+    'tag' : 'master',
+    'source' : 'git@github.com:airblade/vim-gitgutter.git',
+    'destination' : 'bundle/gitgutter'
+  },
   'easymotion' : {
     'source_type' : 'git',
-    'tag' : '2.0',
+    'tag' : 'v2.1.0',
     'source' : 'git@github.com:Lokaltog/vim-easymotion.git',
     'destination' : 'bundle/easymotion'
   },
@@ -44,13 +55,19 @@ vim_dependencies = {
   },
   'airline' : {
     'source_type' : 'git',
-    'tag' : 'v0.6',
+    'tag' : 'v0.7',
     'source' : 'git@github.com:bling/vim-airline.git',
     'destination' : 'bundle/airline'
   },
+  'syntastic' : {
+    'source_type' : 'git',
+    'tag' : '3.6.0',
+    'source' : 'git@github.com:scrooloose/syntastic.git',
+    'destination' : 'bundle/syntastic'
+  },
   'bookmarks' : {
     'source_type' : 'git',
-    'tag' : '1.1.0',
+    'tag' : '1.3.0',
     'source' : 'git@github.com:MattesGroeger/vim-bookmarks.git',
     'destination' : 'bundle/bookmarks'
   },
@@ -60,11 +77,23 @@ vim_dependencies = {
     'source' : 'git@github.com:nathanaelkane/vim-indent-guides.git',
     'destination' : 'bundle/indent-guides'
   },
+  'tmuxline' : {
+    'source_type' : 'git',
+    'tag' : 'master',
+    'source' : 'https://github.com/edkolev/tmuxline.vim.git',
+    'destination' : 'bundle/tmuxline.vim'
+  },
   'xoria256' : {
     'source_type' : 'file',
     'tag' : '1.5',
     'source' : 'http://www.vim.org/scripts/download_script.php?src_id=15762',
     'destination' : 'colors/xoria256.vim'
+  },
+  'vim-colors-solarized' : {
+    'source_type' : 'git',
+    'tag' : 'master',
+    'source' : 'git://github.com/altercation/vim-colors-solarized.git',
+    'destination' : 'bundle/vim-colors-solarized'
   },
 } 
 
