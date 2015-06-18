@@ -69,7 +69,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export EDITOR='vim'
+export VISUAL='vim'
+export EDITOR="$VISUAL"
 
 alias ..='cd ..'
 alias ...='cd ../../../'
