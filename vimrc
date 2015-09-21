@@ -1,5 +1,29 @@
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kien/ctrlp.vim'
+Plugin 'joonty/vdebug'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'xoria256.vim'
+Plugin 'altercation/vim-colors-solarized.git'
+
+call vundle#end()
+
 
 syntax on
 filetype plugin indent on
