@@ -52,4 +52,4 @@ shutil.copyfile(this_dir + '/vimrc', home + '/.vimrc')
 shutil.copyfile(this_dir + '/gitconfig', home + '/.gitconfig')
 shutil.copyfile(this_dir + '/bashrc', home + '/.bashrc')
 
-os.system('vim -u NONE +PluginInstall +qall +Silent')
+os.system('vim +PluginInstall +qall +silent')

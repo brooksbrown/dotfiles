@@ -60,5 +60,3 @@ let g:solarized_termcolors=256
 colorscheme solarized
 
 highlight clear SignColumn
-
-let g:airline_powerline_fonts = 1
