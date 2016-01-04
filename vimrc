@@ -6,19 +6,21 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'joonty/vdebug'
-Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'edkolev/tmuxline.vim'
+
+Plugin 'StanAngeloff/php.vim'
+
 Plugin 'xoria256.vim'
 Plugin 'altercation/vim-colors-solarized.git'
 
@@ -60,3 +62,5 @@ let g:solarized_termcolors=256
 colorscheme solarized
 
 highlight clear SignColumn
+
+command Controls execute "tabedit ~/.dotfiles-cheatsheet.txt"

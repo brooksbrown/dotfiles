@@ -1,0 +1,23 @@
+ 
+Vim Shortcuts
+========================
+ ,t  - tagbar toggle
+ ,r  - ctrlp recently used files
+ ,b  - ctrlp file buffer
+ ,,f - easymotion (char)
+ ,,w - easymotion (word)
+ ,ig - indent guides toggle
+
+ mm  - bookmark toggle 
+ mn  - bookmark next
+ mp  - bookmark previous
+ ma  - bookmark show all
+ mc  - bookmark clear (current buffer)
+ mx  - bookmark clear all
+
+Git Aliases
+========================
+git tree
+  - shows a tree graph
+git ollog {commit}
+  - shows a commit log between the current HEAD and the given commit 
