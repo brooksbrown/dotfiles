@@ -1,17 +1,21 @@
 #!/bin/bash
 
 
-#OS PREP
-if [[ "`command -v lsb_release`" != '' ]]; then
-  if [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'Ubuntu' ]] || 
-    [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'LinuxMint' ]]; then
-    #UBUNTU
-    sudo apt-get update
-    sudo apt-get install git curl vim tmux exuberant-ctags -y
+if [[ $1 != '--min' ]]; then
+
+  #OS PREP
+  if [[ "`command -v lsb_release`" != '' ]]; then
+    if [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'Ubuntu' ]] || 
+      [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'LinuxMint' ]]; then
+      #UBUNTU
+      sudo apt-get update
+      sudo apt-get install git curl vim tmux exuberant-ctags -y
+    fi
+  elif [[ "$(UNAME)" == "Darwin" ]]; then
+    #MACOSX
+    brew install python tmux ctags
   fi
-elif [[ "$(UNAME)" == "Darwin" ]]; then
-  #MACOSX
-  brew install python tmux ctags
+
 fi
 
 #Remove old dotfiles
@@ -26,18 +30,20 @@ mkdir -p ~/.vim/autoload
 mkdir ~/.vim/bundle
 mkdir ~/.vim/colors
 
-#Fonts
-if [[ -d "~/.fonts/truetype/Anonymice Powerline" ]]; then
-  rm -rf ~/.fonts/truetype/Anonymice\ Powerline
+if [[ $1 != '--min' ]]; then
+  #Fonts
+  if [[ -d "~/.fonts/truetype/Anonymice Powerline" ]]; then
+    rm -rf ~/.fonts/truetype/Anonymice\ Powerline
+  fi
+
+  mkdir -p ~/.fonts/truetype/Anonymice\ Powerline
+  curl https://raw.githubusercontent.com/powerline/fonts/master/AnonymousPro/Anonymice%20Powerline.ttf > ~/.fonts/truetype/Anonymice\ Powerline/Anonymice\ Powerline.ttf
+  curl https://raw.githubusercontent.com/powerline/fonts/master/AnonymousPro/Anonymice%20Powerline%20Bold.ttf > ~/.fonts/truetype/Anonymice\ Powerline/Anonymice\ Powerline\ Bold.ttf
+  curl https://raw.githubusercontent.com/powerline/fonts/master/AnonymousPro/Anonymice%20Powerline%20Bold%20Italic.ttf > ~/.fonts/truetype/Anonymice\ Powerline/Anonymice\ Powerline\ Bold\ Italic.ttf
+  curl https://raw.githubusercontent.com/powerline/fonts/master/AnonymousPro/Anonymice%20Powerline%20Italic.ttf > ~/.fonts/truetype/Anonymice\ Powerline/Anonymice\ Powerline\ Italic.ttf
+
+  fc-cache -fv
 fi
-
-mkdir -p ~/.fonts/truetype/Anonymice\ Powerline
-curl https://raw.githubusercontent.com/powerline/fonts/master/AnonymousPro/Anonymice%20Powerline.ttf > ~/.fonts/truetype/Anonymice\ Powerline/Anonymice\ Powerline.ttf
-curl https://raw.githubusercontent.com/powerline/fonts/master/AnonymousPro/Anonymice%20Powerline%20Bold.ttf > ~/.fonts/truetype/Anonymice\ Powerline/Anonymice\ Powerline\ Bold.ttf
-curl https://raw.githubusercontent.com/powerline/fonts/master/AnonymousPro/Anonymice%20Powerline%20Bold%20Italic.ttf > ~/.fonts/truetype/Anonymice\ Powerline/Anonymice\ Powerline\ Bold\ Italic.ttf
-curl https://raw.githubusercontent.com/powerline/fonts/master/AnonymousPro/Anonymice%20Powerline%20Italic.ttf > ~/.fonts/truetype/Anonymice\ Powerline/Anonymice\ Powerline\ Italic.ttf
-
-fc-cache -fv
 
 #Copy dotfiles over
 cp tmux.conf ~/.tmux.conf
