@@ -13,7 +13,7 @@ is_ubuntu(){
 
 if [[ is_ubuntu ]]; then
   sudo apt-get update
-  sudo apt-get install git curl vim tmux exuberant-ctags python-pip -y
+  sudo apt-get install git curl vim tmux exuberant-ctags python-pip markdown xdotool -y
   sudo pip install powerline-status
 fi
 

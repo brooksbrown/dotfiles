@@ -24,6 +24,8 @@ Plugin 'StanAngeloff/php.vim'
 Plugin 'xoria256.vim'
 Plugin 'altercation/vim-colors-solarized.git'
 
+Plugin 'JamshedVesuna/vim-markdown-preview'
+
 call vundle#end()
 
 
@@ -33,6 +35,8 @@ let mapleader=","
 nmap <leader>t :TagbarToggle<CR>
 nmap <leader>r :CtrlPMRU<CR>
 nmap <leader>b :CtrlPBuffer<CR>
+let vim_markdown_preview_hotkey='<C-m>'
+
 set hidden
 
 set nowrap
