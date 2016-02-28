@@ -9,17 +9,13 @@ if [[ $1 != '--min' ]]; then
       [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'LinuxMint' ]]; then
       #UBUNTU
       sudo apt-get update
-      sudo apt-get install git curl vim tmux exuberant-ctags -y
+      sudo apt-get install git curl vim tmux exuberant-ctags python-pip markdown xdotool -y
+      sudo pip install powerline-status
     fi
   elif [[ "$(UNAME)" == "Darwin" ]]; then
     #MACOSX
     brew install python tmux ctags
   fi
-
-if [[ is_ubuntu ]]; then
-  sudo apt-get update
-  sudo apt-get install git curl vim tmux exuberant-ctags python-pip markdown xdotool -y
-  sudo pip install powerline-status
 fi
 
 #Remove old dotfiles
@@ -57,20 +53,20 @@ cp bashrc ~/.bashrc
 cp bash_aliases ~/.bash_aliases
 cp cheatsheet.txt ~/.dotfiles-cheatsheet.txt
 
-if [[ "$(UNAME)" == "Darwin" ]]; then
+if [[ "$(uname)" == "Darwin" ]]; then
   touch ~/.bash_profile
   echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> ~/.bash_profile
 fi
 
 #Install vim bundles
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-if [[ "$(UNAME)" != "Darwin" ]]; then 
+if [[ "$(uname)" != "Darwin" ]]; then 
   sed -i 's/colorscheme solarized/" colorscheme solarized/g' ~/.vimrc
 fi
 
 vim +PluginInstall +qall +silent
 
-if [[ "$(UNAME)" != "Darwin" ]]; then
+if [[ "$(uname)" != "Darwin" ]]; then
   sed -i 's/" colorscheme solarized/colorscheme solarized/g' ~/.vimrc
 fi
 
