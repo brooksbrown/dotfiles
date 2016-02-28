@@ -18,6 +18,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'bling/vim-airline'
 
 Plugin 'StanAngeloff/php.vim'
 
@@ -59,6 +60,8 @@ set copyindent
 
 set t_Co=256
 
+set backspace=2
+
 set laststatus=2
 
 set background=dark
@@ -67,4 +70,5 @@ colorscheme solarized
 
 highlight clear SignColumn
 
-command Controls execute "tabedit ~/.dotfiles-cheatsheet.txt"
+command Cheats execute "tabedit ~/.dotfiles-cheatsheet.txt"
+nmap <leader>C :Cheats<CR>

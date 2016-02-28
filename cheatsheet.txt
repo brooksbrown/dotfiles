@@ -15,6 +15,13 @@ Vim Shortcuts
  mc  - bookmark clear (current buffer)
  mx  - bookmark clear all
 
+Tmux Shortcuts
+========================
+ctrl+b , - rename window
+ctrl+b w - list windows
+ctrl+b c - new window
+ctrl+b & - kill window
+
 Git Aliases
 ========================
 git tree
