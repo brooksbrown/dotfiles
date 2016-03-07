@@ -1,18 +1,33 @@
 #!/bin/bash
 
-
-if [[ $1 != '--min' ]]; then
-
-  #OS PREP
-  if [[ "`command -v lsb_release`" != '' ]]; then
-    if [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'Ubuntu' ]] || 
-      [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'LinuxMint' ]]; then
-      #UBUNTU
-      sudo apt-get update
-      sudo apt-get install git curl vim tmux exuberant-ctags python-pip markdown xdotool -y
-      sudo pip install powerline-status
+function is_mac() {
+  if [[ "$(command -v UNAME 2>/dev/null)" ]]; then
+    if [[ "$(UNAME)" == "Darwin" ]]; then
+      return 0;
     fi
-  elif [[ "$(UNAME)" == "Darwin" ]]; then
+  fi
+  return 1;
+}
+
+function is_ubuntu() {
+  if [[ "`command -v lsb_release`" != '' ]]; then
+    if [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'Ubuntu' ]] ||
+      [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'LinuxMint' ]]; then
+      return 0;
+    fi
+  fi
+  return 1;
+}
+
+
+#OS PREP
+if [[ $1 != '--min' ]]; then
+  if is_ubuntu; then
+    #UBUNTU
+    sudo apt-get update
+    sudo apt-get install git curl vim tmux exuberant-ctags python-pip markdown xdotool -y
+    sudo pip install powerline-status
+  elif is_mac; then
     #MACOSX
     brew install python tmux ctags
   fi
@@ -53,20 +68,20 @@ cp bashrc ~/.bashrc
 cp bash_aliases ~/.bash_aliases
 cp cheatsheet.txt ~/.dotfiles-cheatsheet.txt
 
-if [[ "$(uname)" == "Darwin" ]]; then
+if is_mac; then
   touch ~/.bash_profile
   echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> ~/.bash_profile
 fi
 
 #Install vim bundles
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-if [[ "$(uname)" != "Darwin" ]]; then 
+if is_ubuntu; then 
   sed -i 's/colorscheme solarized/" colorscheme solarized/g' ~/.vimrc
 fi
 
 vim +PluginInstall +qall +silent
 
-if [[ "$(uname)" != "Darwin" ]]; then
+if is_ubuntu; then
   sed -i 's/" colorscheme solarized/colorscheme solarized/g' ~/.vimrc
 fi
 
