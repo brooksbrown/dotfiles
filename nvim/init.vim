@@ -43,7 +43,6 @@ set hlsearch
 set incsearch
 
 " More natural splits
-set splitbelow          " Horizontal split below current.
 set splitright          " Vertical split to right of current.
 
 if !&scrolloff
