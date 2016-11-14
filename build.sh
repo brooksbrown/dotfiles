@@ -57,7 +57,6 @@ if [ -d ~/.tmux ]; then rm -rf ~/.tmux; fi
 cp tmux.conf ~/.tmux.conf
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-~/.tmux/plugins/tpm/bin/install_plugins
 ~/.tmux/plugins/tpm/bin/update_plugins all
 
 
