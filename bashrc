@@ -59,6 +59,6 @@ if [ `uname` == 'Darwin' ]; then
   export LSCOLORS='gxBxhxDxfxhxhxhxhxcxcx'
 fi
 
-export VISUAL='vim'
+export VISUAL='nvim'
 export EDITOR="$VISUAL"
 

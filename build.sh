@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function is_mac() {
+function is_mac {
   if [[ "$(command -v UNAME 2>/dev/null)" ]]; then
     if [[ "$(UNAME)" == "Darwin" ]]; then
       return 0;
@@ -9,7 +9,7 @@ function is_mac() {
   return 1;
 }
 
-function is_ubuntu() {
+function is_ubuntu {
   if [[ "`command -v lsb_release`" != '' ]]; then
     if [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'Ubuntu' ]] ||
       [[ "`lsb_release -i | sed 's/Distributor\ ID\:\t//'`" == 'LinuxMint' ]]; then
@@ -19,13 +19,12 @@ function is_ubuntu() {
   return 1;
 }
 
-
-#OS PREP
+#os prep
 if [[ $1 != '--min' ]]; then
   if is_ubuntu; then
     #UBUNTU
     sudo apt-get update
-    sudo apt-get install git curl vim tmux exuberant-ctags python-pip markdown xdotool -y
+    sudo apt-get install git curl neovim tmux exuberant-ctags python-pip markdown xdotool -y
     sudo pip install powerline-status
   elif is_mac; then
     #MACOSX
@@ -33,18 +32,36 @@ if [[ $1 != '--min' ]]; then
   fi
 fi
 
-#Remove old dotfiles
-rm -rf ~/.vim
-rm ~/.vimrc
-rm ~/.tmux.conf
-rm ~/.gitconfig
-rm ~/.bashrc
-rm ~/.dotfiles-cheatsheet.txt
+#git
+if [ -f ~/.gitconfig ]; then rm ~/.gitconfig; fi
+cp gitconfig ~/.gitconfig
 
-mkdir -p ~/.vim/autoload
-mkdir ~/.vim/bundle
-mkdir ~/.vim/colors
+#bash
+if [ -f ~/.bashrc ]; then rm ~/.bashrc; fi
+cp bashrc ~/.bashrc
 
+if [ -f ~/.bash_aliases ]; then rm ~/.bash_aliases; fi
+cp bash_aliases ~/.bash_aliases
+
+if [ -f ~/.dotfiles-cheatsheet.txt ]; then rm ~/.dotfiles-cheatsheet.txt; fi
+cp cheatsheet.txt ~/.dotfiles-cheatsheet.txt
+
+#neovim setup
+if [ -f ~/.config/nvim ]; then rm -rf ~/.config/nvim; fi
+cp -r nvim ~/.config/nvim
+nvim +PlugInstall +qall
+
+#tmux setup
+if [ -f ~/.tmux.conf ]; then rm ~/.tmux.conf; fi
+if [ -d ~/.tmux ]; then rm -rf ~/.tmux; fi
+cp tmux.conf ~/.tmux.conf
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
+~/.tmux/plugins/tpm/bin/update_plugins all
+
+
+#terminal font setup
 if [[ $1 != '--min' ]]; then
   #Fonts
   if [[ -d "~/.fonts/truetype/Anonymice Powerline" ]]; then
@@ -60,34 +77,11 @@ if [[ $1 != '--min' ]]; then
   fc-cache -fv
 fi
 
-#Copy dotfiles over
-cp tmux.conf ~/.tmux.conf
-cp vimrc ~/.vimrc
-cp gitconfig ~/.gitconfig
-cp bashrc ~/.bashrc
-cp bash_aliases ~/.bash_aliases
-cp cheatsheet.txt ~/.dotfiles-cheatsheet.txt
-
 if is_mac; then
   touch ~/.bash_profile
   echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> ~/.bash_profile
 fi
 
-#Install vim bundles
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-if is_ubuntu; then 
-  sed -i 's/colorscheme solarized/" colorscheme solarized/g' ~/.vimrc
-fi
-
-vim +PluginInstall +qall +silent
-
-if is_ubuntu; then
-  sed -i 's/" colorscheme solarized/colorscheme solarized/g' ~/.vimrc
-fi
-
 echo 'Ensure the terminal emulator font is set!'
 
 
-#nvim setup
-rm -rf ~/.config/nvim
-cp -r nvim ~/.config/nvim

@@ -1,5 +1,5 @@
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
@@ -80,3 +80,6 @@ nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
+
+command Cheats execute "tabedit ~/.dotfiles-cheatsheet.txt"
+nmap <leader>C :Cheats<CR>

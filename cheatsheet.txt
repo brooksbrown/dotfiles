@@ -1,19 +1,21 @@
- 
 Vim Shortcuts
 ========================
- ,t  - tagbar toggle
- ,r  - ctrlp recently used files
- ,b  - ctrlp file buffer
- ,,f - easymotion (char)
- ,,w - easymotion (word)
- ,ig - indent guides toggle
+,t  - tagbar toggle
+,r  - ctrlp recently used files
+,b  - ctrlp file buffer
+,,f - easymotion (char)
+,,w - easymotion (word)
+,ig - indent guides toggle
 
- mm  - bookmark toggle 
- mn  - bookmark next
- mp  - bookmark previous
- ma  - bookmark show all
- mc  - bookmark clear (current buffer)
- mx  - bookmark clear all
+mm  - bookmark toggle 
+mn  - bookmark next
+mp  - bookmark previous
+ma  - bookmark show all
+mc  - bookmark clear (current buffer)
+mx  - bookmark clear all
+
+:Obsess [optional directory] - start recording session
+:Obsess! [optional directory] - stop recording session
 
 Tmux Shortcuts
 ========================
@@ -21,6 +23,9 @@ ctrl+b , - rename window
 ctrl+b w - list windows
 ctrl+b c - new window
 ctrl+b & - kill window
+ctrl+b s - save session
+ctrl+b r - restore session
+ctrl+b I - install plugins
 
 Git Aliases
 ========================
