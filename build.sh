@@ -47,16 +47,21 @@ if [ -f ~/.dotfiles-cheatsheet.txt ]; then rm ~/.dotfiles-cheatsheet.txt; fi
 cp cheatsheet.txt ~/.dotfiles-cheatsheet.txt
 
 #neovim setup
-if [ -f ~/.config/nvim ]; then rm -rf ~/.config/nvim; fi
-cp -r nvim ~/.config/nvim
+if [ -d ~/.config/nvim ]; then rm -rf ~/.config/nvim; fi
+mkdir -p ~/.config/nvim/autoload
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+cp -r init.vim ~/.config/nvim/.
 nvim +PlugInstall +qall
 
 #tmux setup
 if [ -f ~/.tmux.conf ]; then rm ~/.tmux.conf; fi
 if [ -d ~/.tmux ]; then rm -rf ~/.tmux; fi
 cp tmux.conf ~/.tmux.conf
+mkdir -p ~/.tmux/plugins
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
 ~/.tmux/plugins/tpm/bin/update_plugins all
 
 

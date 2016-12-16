@@ -20,7 +20,7 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 " Map the leader key to SPACE
-let mapleader="\<SPACE>"
+let mapleader=","
 set showcmd             " Show (partial) command in status line.
 set showmatch           " Show matching brackets.
 set showmode            " Show current mode.
@@ -64,10 +64,10 @@ set list                " Show problematic characters.
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
 
-nmap <leader>t :terminal<CR>
-nmap <leader>g :TagbarToggle<CR>
-nmap <leader>r :CtrlPMRU<CR>
-nmap <leader>b :CtrlPBuffer<CR>
+nmap <Leader>t :terminal<CR>
+nmap <Leader>g :TagbarToggle<CR>
+nmap <Leader>r :CtrlPMRU<CR>
+nmap <Leader>b :CtrlPBuffer<CR>
 
 set background=dark
 
@@ -83,3 +83,14 @@ nnoremap <A-l> <C-w>l
 
 command Cheats execute "tabedit ~/.dotfiles-cheatsheet.txt"
 nmap <leader>C :Cheats<CR>
+
+let g:netrw_preview = 1
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+let g:netrw_banner = 0
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Lexplore
+augroup END
