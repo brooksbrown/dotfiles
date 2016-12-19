@@ -24,12 +24,18 @@ if [[ $1 != '--min' ]]; then
   if is_ubuntu; then
     #UBUNTU
     sudo apt-get update
-    sudo apt-get install git curl neovim tmux exuberant-ctags python-pip markdown xdotool -y
+    sudo apt-get install git curl neovim tmux exuberant-ctags python-pip markdown xdotool lynx fortune-mod -y
     sudo pip install powerline-status
   elif is_mac; then
     #MACOSX
     brew install python tmux ctags neovim
   fi
+fi
+
+#mybin setup
+if [[ $1 != '--min' ]]; then
+  if [ -d ~/.mybin ]; then rm ~/.mybin; fi
+  cp -r mybin ~/.mybin
 fi
 
 #git

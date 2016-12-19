@@ -59,6 +59,16 @@ if [ `uname` == 'Darwin' ]; then
   export LSCOLORS='gxBxhxDxfxhxhxhxhxcxcx'
 fi
 
+# dbus info setup
+if [ ! -d "$HOME/.dbus" ]; then
+  mkdir "$HOME/.dbus"
+fi
+touch $HOME/.dbus/Xdbus
+chmod 600 $HOME/.dbus/Xdbus
+env | grep DBUS_SESSION_BUS_ADDRESS > $HOME/.dbus/Xdbus
+echo 'export DBUS_SESSION_BUS_ADDRESS' >> $HOME/.dbus/Xdbus
+
 export VISUAL='nvim'
 export EDITOR="$VISUAL"
 
+export PATH=$PATH:~/.mybin
